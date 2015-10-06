@@ -51,6 +51,7 @@
             this.btnSetup.TabIndex = 1;
             this.btnSetup.Text = "Configuración";
             this.btnSetup.UseVisualStyleBackColor = true;
+            this.btnSetup.Click += new System.EventHandler(this.btnSetup_Click);
             // 
             // btnPlay
             // 

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ForestIA
 {
-    public partial class menu : Form
+    public partial class Configuracion : Form
     {
-        public menu()
+        public Configuracion()
         {
             InitializeComponent();
         }
@@ -20,12 +20,6 @@ namespace ForestIA
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void btnSetup_Click(object sender, EventArgs e)
-        {
-            Configuracion ventanaConfiguracion = new Configuracion();
-            ventanaConfiguracion.Show();
         }
     }
 }
