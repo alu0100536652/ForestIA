@@ -12,9 +12,11 @@ namespace ForestIA
 {
     public partial class menu : Form
     {
+        private Game game;
         public menu()
         {
             InitializeComponent();
+            game = new Game();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -24,7 +26,7 @@ namespace ForestIA
 
         private void btnSetup_Click(object sender, EventArgs e)
         {
-            Configuracion ventanaConfiguracion = new Configuracion();
+            Configuracion ventanaConfiguracion = new Configuracion(game);
             ventanaConfiguracion.Show();
         }
     }

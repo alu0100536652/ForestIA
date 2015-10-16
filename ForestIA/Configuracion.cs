@@ -12,6 +12,8 @@ namespace ForestIA
 {
     public partial class Configuracion : Form
     {
+        private Game game;
+
         public Configuracion()
         {
             InitializeComponent();
@@ -20,6 +22,11 @@ namespace ForestIA
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnSizeMap_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
