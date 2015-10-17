@@ -14,19 +14,18 @@ namespace ForestIA
     {
         private Game game;
 
-        public Configuracion()
+        public Configuracion(ref Game game)
         {
             InitializeComponent();
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            this.game = game;
         }
 
         private void btnSizeMap_Click(object sender, EventArgs e)
         {
-
+            Point setupOfTheMap = new Point(Int16.Parse(textBox1.Text), Int16.Parse(textBox2.Text));
+            game.Setup(setupOfTheMap);
+            game.Print();
+            this.Close();
         }
     }
 }

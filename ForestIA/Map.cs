@@ -8,20 +8,37 @@ namespace ForestIA
 {
     class Map
     {
-        int width, height;
-        int[,] map;
+        private int width, height;
+        private int[,] map;
 
-        public Map()
+        public Map(int width, int height)
         {
-            map = new int[width, height];
+            this.width = width;
+            this.height = height;
+            map = new int[this.width, this.height];
 
             for(int i = 0; i < width; i++)
             {
-                map[i, 0] = 1;
-                map[i, height] = 1;
                 map[0, i] = 1;
-                map[width, i] = 1;
+                map[width-1, i] = 1;
+                map[i, 0] = 1;
+                map[i, height-1] = 1;
             }
+        }
+
+        public int getMapWidth()
+        {
+            return width;
+        }
+
+        public int getMapHeigth()
+        {
+            return height;
+        }
+
+        public int getMapId(int x, int y)
+        {
+            return map[x,y];
         }
 
         public void setPerson(int x, int y)
@@ -31,7 +48,7 @@ namespace ForestIA
 
         public void setStone(int x, int y)
         {
-
+            map[x, y] = 1;
         }
 
         public void setRandomStones(int stonesNumber)
