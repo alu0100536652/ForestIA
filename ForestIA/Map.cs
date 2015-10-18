@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ForestIA
 {
-    class Map
+    public class Map
     {
         private int width, height;
         private int[,] map;
@@ -43,7 +43,7 @@ namespace ForestIA
 
         public void setPerson(int x, int y)
         {
-
+            map[x, y] = 2;
         }
 
         public void setStone(int x, int y)
@@ -53,7 +53,19 @@ namespace ForestIA
 
         public void setRandomStones(int stonesNumber)
         {
-
+            int stones = 0;
+            do
+            {
+                Random rnd = new Random();
+                int x = rnd.Next(0, width);
+                Random rnd2 = new Random();
+                int y = rnd2.Next(0, height);
+                if (map[x, y] != 1)
+                {
+                    map[x, y] = 1;
+                    stones++;
+                }
+            } while (stones < stonesNumber);
         }
     }
 }

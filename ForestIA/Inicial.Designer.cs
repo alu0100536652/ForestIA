@@ -34,7 +34,11 @@
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seleccionarDimensionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.obstaculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aleatoriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.protagonistaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.containerView = new System.Windows.Forms.PictureBox();
+            this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.containerView)).BeginInit();
             this.SuspendLayout();
@@ -62,21 +66,23 @@
             // jugarToolStripMenuItem
             // 
             this.jugarToolStripMenuItem.Name = "jugarToolStripMenuItem";
-            this.jugarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.jugarToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.jugarToolStripMenuItem.Text = "Jugar";
             this.jugarToolStripMenuItem.Click += new System.EventHandler(this.jugarToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
             // mapaToolStripMenuItem
             // 
             this.mapaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.seleccionarDimensionesToolStripMenuItem});
+            this.seleccionarDimensionesToolStripMenuItem,
+            this.obstaculosToolStripMenuItem,
+            this.protagonistaToolStripMenuItem});
             this.mapaToolStripMenuItem.Name = "mapaToolStripMenuItem";
             this.mapaToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.mapaToolStripMenuItem.Text = "Mapa";
@@ -88,6 +94,29 @@
             this.seleccionarDimensionesToolStripMenuItem.Text = "Seleccionar dimensiones";
             this.seleccionarDimensionesToolStripMenuItem.Click += new System.EventHandler(this.seleccionarDimensionesToolStripMenuItem_Click);
             // 
+            // obstaculosToolStripMenuItem
+            // 
+            this.obstaculosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aleatoriosToolStripMenuItem,
+            this.manualToolStripMenuItem});
+            this.obstaculosToolStripMenuItem.Name = "obstaculosToolStripMenuItem";
+            this.obstaculosToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.obstaculosToolStripMenuItem.Text = "Obstaculos";
+            // 
+            // aleatoriosToolStripMenuItem
+            // 
+            this.aleatoriosToolStripMenuItem.Name = "aleatoriosToolStripMenuItem";
+            this.aleatoriosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aleatoriosToolStripMenuItem.Text = "Aleatorios";
+            this.aleatoriosToolStripMenuItem.Click += new System.EventHandler(this.aleatoriosToolStripMenuItem_Click);
+            // 
+            // protagonistaToolStripMenuItem
+            // 
+            this.protagonistaToolStripMenuItem.Name = "protagonistaToolStripMenuItem";
+            this.protagonistaToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.protagonistaToolStripMenuItem.Text = "Protagonista";
+            this.protagonistaToolStripMenuItem.Click += new System.EventHandler(this.protagonistaToolStripMenuItem_Click);
+            // 
             // containerView
             // 
             this.containerView.Location = new System.Drawing.Point(0, 27);
@@ -95,6 +124,14 @@
             this.containerView.Size = new System.Drawing.Size(484, 434);
             this.containerView.TabIndex = 1;
             this.containerView.TabStop = false;
+            this.containerView.Click += new System.EventHandler(this.containerView_Click);
+            // 
+            // manualToolStripMenuItem
+            // 
+            this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
+            this.manualToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.manualToolStripMenuItem.Text = "Manual";
+            this.manualToolStripMenuItem.Click += new System.EventHandler(this.manualToolStripMenuItem_Click);
             // 
             // menu
             // 
@@ -124,6 +161,10 @@
         private System.Windows.Forms.ToolStripMenuItem mapaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seleccionarDimensionesToolStripMenuItem;
         private System.Windows.Forms.PictureBox containerView;
+        private System.Windows.Forms.ToolStripMenuItem obstaculosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aleatoriosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem protagonistaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manualToolStripMenuItem;
     }
 }
 

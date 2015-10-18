@@ -60,6 +60,12 @@
       <DependentUpon>Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Map.cs" />
+    <Compile Include="Obstaculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Obstaculos.Designer.cs">
+      <DependentUpon>Obstaculos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +74,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inicial.resx">
       <DependentUpon>Inicial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Obstaculos.resx">
+      <DependentUpon>Obstaculos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,10 +102,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bg1.png" />
+    <None Include="Resources\bg2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\rock.png" />
+    <None Include="Resources\rock2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\person.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -13,17 +13,14 @@ namespace ForestIA
     public partial class menu : Form
     {
         private Game game;
-        private ContextMenu cm;
+        private int selector;
+        
 
         public menu()
         {
             InitializeComponent();
             game = new Game(ref containerView);
-            cm = new ContextMenu();
-            cm.MenuItems.Add("Seleccionar Obstaculo");
-            cm.MenuItems.Add("Seleccionar Protagonista");
-            cm.MenuItems.Add("Seleccionar Objetivo");
-            cm.MenuItems.Add("Play");
+            selector = 0;
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -44,8 +41,40 @@ namespace ForestIA
 
         private void menu_Load(object sender, EventArgs e)
         {
-            containerView.SizeMode = PictureBoxSizeMode.StretchImage;
-            containerView.ContextMenu = cm;
+            containerView.SizeMode = PictureBoxSizeMode.Normal;
+        }
+
+        private void containerView_Click(object sender, EventArgs e)
+        {
+            MouseEventArgs mouse = (MouseEventArgs)e;
+            switch (selector)
+            {
+                case 1:
+                    game.getMap().setStone((mouse.X / 32), (mouse.Y / 32));
+                    game.Print();
+                    break;
+                case 2:
+                    game.getMap().setPerson((mouse.X / 32),(mouse.Y / 32));
+                    game.Print();
+                    selector = 0;
+                    break;
+            }
+        }
+
+        private void aleatoriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Obstaculos ventanaObstaculos = new Obstaculos(ref game);
+            ventanaObstaculos.Show();
+        }
+
+        private void protagonistaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selector = 2;
+        }
+
+        private void manualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selector = 1;
         }
     }
 }

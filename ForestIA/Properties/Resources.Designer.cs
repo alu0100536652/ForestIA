@@ -63,9 +63,9 @@ namespace ForestIA.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bg1 {
+        internal static System.Drawing.Bitmap bg2 {
             get {
-                object obj = ResourceManager.GetObject("bg1", resourceCulture);
+                object obj = ResourceManager.GetObject("bg2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,19 @@ namespace ForestIA.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rock {
+        internal static System.Drawing.Bitmap person {
             get {
-                object obj = ResourceManager.GetObject("rock", resourceCulture);
+                object obj = ResourceManager.GetObject("person", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rock2 {
+            get {
+                object obj = ResourceManager.GetObject("rock2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

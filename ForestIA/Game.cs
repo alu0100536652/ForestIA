@@ -13,14 +13,15 @@ namespace ForestIA
         private Map map;
         private Bitmap gameView;
         private Bitmap[] tileset;
-        private int resolutionTile = 16;
+        private int resolutionTile = 32;
         PictureBox containerView;
 
         public Game(ref PictureBox containerView)
         {
             tileset = new Bitmap[10];
-            tileset[0] = Properties.Resources.bg1;
-            tileset[1] = Properties.Resources.rock;
+            tileset[0] = Properties.Resources.bg2;
+            tileset[1] = Properties.Resources.rock2;
+            tileset[2] = Properties.Resources.person;
             this.containerView = containerView;
         }
 
@@ -28,6 +29,11 @@ namespace ForestIA
         {
             map = new Map(inicial.X, inicial.Y);
             gameView = new Bitmap(map.getMapWidth() * resolutionTile, map.getMapHeigth() * resolutionTile);
+        }
+
+        public Map getMap()
+        {
+            return map;
         }
 
         public void Print()
