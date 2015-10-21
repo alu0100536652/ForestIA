@@ -41,7 +41,7 @@ namespace ForestIA
 
         private void menu_Load(object sender, EventArgs e)
         {
-            containerView.SizeMode = PictureBoxSizeMode.Normal;
+            containerView.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void containerView_Click(object sender, EventArgs e)
@@ -50,13 +50,27 @@ namespace ForestIA
             switch (selector)
             {
                 case 1:
-                    game.getMap().setStone((mouse.X / 32), (mouse.Y / 32));
-                    game.Print();
+                    if (mouse.Button == MouseButtons.Left)
+                    {
+                        game.getMap().setStone((mouse.X / 32), (mouse.Y / 32));
+                        game.Print();
+                    } else
+                    {
+                        game.getMap().setGrass((mouse.X / 32), (mouse.Y / 32));
+                        game.Print();
+                    }
                     break;
                 case 2:
-                    game.getMap().setPerson((mouse.X / 32),(mouse.Y / 32));
-                    game.Print();
-                    selector = 0;
+                    if (mouse.Button == MouseButtons.Left)
+                    {
+                        game.getMap().setPerson((mouse.X / 32), (mouse.Y / 32));
+                        game.Print();
+                        selector = 0;
+                    } else
+                    {
+                        game.getMap().setGrass((mouse.X / 32), (mouse.Y / 32));
+                        game.Print();
+                    }
                     break;
             }
         }

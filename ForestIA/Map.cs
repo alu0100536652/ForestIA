@@ -46,6 +46,11 @@ namespace ForestIA
             map[x, y] = 2;
         }
 
+        public void setGrass(int x, int y)
+        {
+            map[x, y] = 0;
+        }
+
         public void setStone(int x, int y)
         {
             map[x, y] = 1;
