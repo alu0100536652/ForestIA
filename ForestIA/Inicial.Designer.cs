@@ -36,9 +36,10 @@
             this.seleccionarDimensionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.obstaculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aleatoriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.protagonistaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.containerView = new System.Windows.Forms.PictureBox();
             this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.protagonistaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.objetivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.containerView = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.containerView)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +51,7 @@
             this.mapaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(484, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(479, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -82,7 +83,8 @@
             this.mapaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.seleccionarDimensionesToolStripMenuItem,
             this.obstaculosToolStripMenuItem,
-            this.protagonistaToolStripMenuItem});
+            this.protagonistaToolStripMenuItem,
+            this.objetivoToolStripMenuItem});
             this.mapaToolStripMenuItem.Name = "mapaToolStripMenuItem";
             this.mapaToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.mapaToolStripMenuItem.Text = "Mapa";
@@ -106,9 +108,16 @@
             // aleatoriosToolStripMenuItem
             // 
             this.aleatoriosToolStripMenuItem.Name = "aleatoriosToolStripMenuItem";
-            this.aleatoriosToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aleatoriosToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.aleatoriosToolStripMenuItem.Text = "Aleatorios";
             this.aleatoriosToolStripMenuItem.Click += new System.EventHandler(this.aleatoriosToolStripMenuItem_Click);
+            // 
+            // manualToolStripMenuItem
+            // 
+            this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
+            this.manualToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.manualToolStripMenuItem.Text = "Manual";
+            this.manualToolStripMenuItem.Click += new System.EventHandler(this.manualToolStripMenuItem_Click);
             // 
             // protagonistaToolStripMenuItem
             // 
@@ -117,27 +126,27 @@
             this.protagonistaToolStripMenuItem.Text = "Protagonista";
             this.protagonistaToolStripMenuItem.Click += new System.EventHandler(this.protagonistaToolStripMenuItem_Click);
             // 
+            // objetivoToolStripMenuItem
+            // 
+            this.objetivoToolStripMenuItem.Name = "objetivoToolStripMenuItem";
+            this.objetivoToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.objetivoToolStripMenuItem.Text = "Objetivo";
+            this.objetivoToolStripMenuItem.Click += new System.EventHandler(this.objetivoToolStripMenuItem_Click);
+            // 
             // containerView
             // 
             this.containerView.Location = new System.Drawing.Point(0, 27);
             this.containerView.Name = "containerView";
-            this.containerView.Size = new System.Drawing.Size(484, 434);
+            this.containerView.Size = new System.Drawing.Size(480, 480);
             this.containerView.TabIndex = 1;
             this.containerView.TabStop = false;
             this.containerView.Click += new System.EventHandler(this.containerView_Click);
-            // 
-            // manualToolStripMenuItem
-            // 
-            this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
-            this.manualToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.manualToolStripMenuItem.Text = "Manual";
-            this.manualToolStripMenuItem.Click += new System.EventHandler(this.manualToolStripMenuItem_Click);
             // 
             // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 461);
+            this.ClientSize = new System.Drawing.Size(479, 506);
             this.Controls.Add(this.containerView);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -165,6 +174,7 @@
         private System.Windows.Forms.ToolStripMenuItem aleatoriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem protagonistaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manualToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem objetivoToolStripMenuItem;
     }
 }
 

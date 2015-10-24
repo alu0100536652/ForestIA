@@ -20,7 +20,7 @@ namespace ForestIA
         {
             InitializeComponent();
             game = new Game(ref containerView);
-            selector = 0;
+            selector = Map.grassConst;
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -30,7 +30,7 @@ namespace ForestIA
 
         private void jugarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            game.getMap().calculate();
         }
 
         private void seleccionarDimensionesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -41,37 +41,53 @@ namespace ForestIA
 
         private void menu_Load(object sender, EventArgs e)
         {
-            containerView.SizeMode = PictureBoxSizeMode.StretchImage;
+            containerView.SizeMode = PictureBoxSizeMode.Normal;
         }
 
         private void containerView_Click(object sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs)e;
+            Point point = new Point((mouse.X / 32), (mouse.Y / 32));
             switch (selector)
             {
                 case 1:
                     if (mouse.Button == MouseButtons.Left)
                     {
-                        game.getMap().setStone((mouse.X / 32), (mouse.Y / 32));
+                        game.getMap().setItem(point,Map.stoneConst);
                         game.Print();
                     } else
                     {
-                        game.getMap().setGrass((mouse.X / 32), (mouse.Y / 32));
+                        game.getMap().setItem(point, Map.grassConst);
                         game.Print();
                     }
                     break;
                 case 2:
                     if (mouse.Button == MouseButtons.Left)
                     {
-                        game.getMap().setPerson((mouse.X / 32), (mouse.Y / 32));
+                        game.getMap().setItem(point, Map.personConst);
+                        game.getPerson().ubicar(point);
                         game.Print();
-                        selector = 0;
+                        selector = Map.grassConst;
                     } else
                     {
-                        game.getMap().setGrass((mouse.X / 32), (mouse.Y / 32));
+                        game.getMap().setItem(point, Map.grassConst);
                         game.Print();
                     }
                     break;
+                case 3:
+                    if (mouse.Button == MouseButtons.Left)
+                    {
+                        game.getMap().setItem(point, Map.targetConst);
+                        game.Print();
+                        selector = Map.grassConst;
+                    }
+                    else
+                    {
+                        game.getMap().setItem(point, Map.grassConst);
+                        game.Print();
+                    }
+                    break;
+
             }
         }
 
@@ -83,12 +99,17 @@ namespace ForestIA
 
         private void protagonistaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            selector = 2;
+            selector = Map.personConst;
         }
 
         private void manualToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            selector = 1;
+            selector = Map.stoneConst;
+        }
+
+        private void objetivoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selector = Map.targetConst;
         }
     }
 }

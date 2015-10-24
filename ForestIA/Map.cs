@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace ForestIA
 {
     public class Map
     {
-        private int width, height;
         private int[,] map;
+        private Point size;
+        private Point target;
+        private Point initial;
+        public static int targetConst = 3;
+        public static int personConst = 2;
+        public static int stoneConst = 1;
+        public static int grassConst = 0;
 
         public Map(int width, int height)
         {
-            this.width = width;
-            this.height = height;
-            map = new int[this.width, this.height];
+            this.size = new Point(width, height);
+            map = new int[width,height];
 
             for(int i = 0; i < width; i++)
             {
@@ -26,34 +32,23 @@ namespace ForestIA
             }
         }
 
-        public int getMapWidth()
+        public Point getSize()
         {
-            return width;
+            return size;
         }
 
-        public int getMapHeigth()
+        public int getMapId(Point point)
         {
-            return height;
+            return map[point.X,point.Y];
         }
 
-        public int getMapId(int x, int y)
+        public void setItem(Point coordenate, int type)
         {
-            return map[x,y];
-        }
-
-        public void setPerson(int x, int y)
-        {
-            map[x, y] = 2;
-        }
-
-        public void setGrass(int x, int y)
-        {
-            map[x, y] = 0;
-        }
-
-        public void setStone(int x, int y)
-        {
-            map[x, y] = 1;
+            map[coordenate.X, coordenate.Y] = type;
+            if (type == 2)
+                initial = coordenate;
+            else if (type == 3)
+                target = coordenate;
         }
 
         public void setRandomStones(int stonesNumber)
@@ -61,16 +56,26 @@ namespace ForestIA
             int stones = 0;
             do
             {
-                Random rnd = new Random();
-                int x = rnd.Next(0, width);
-                Random rnd2 = new Random();
-                int y = rnd2.Next(0, height);
+                Random rnd = new Random(DateTime.Now.Millisecond);
+                int x = rnd.Next(0, size.X);
+                Random rnd2 = new Random(DateTime.Now.Millisecond * DateTime.Now.Millisecond);
+                int y = rnd2.Next(0, size.Y);
                 if (map[x, y] != 1)
                 {
                     map[x, y] = 1;
                     stones++;
                 }
             } while (stones < stonesNumber);
+        }
+
+        public void calculate()
+        {
+            int[,] copia = new int[size.X,size.Y];
+            for (int i = 0; i < size.X; i++)
+                for (int j = 0; j < size.Y; j++)
+                    copia[i,j] = map[i, j] == 1 ? -1 : 0;
+            copia[initial.X, initial.Y] = -2;
+            copia[target.X, target.Y] = 0;
         }
     }
 }

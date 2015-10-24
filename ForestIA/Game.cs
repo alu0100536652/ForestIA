@@ -11,6 +11,7 @@ namespace ForestIA
     public class Game
     {
         private Map map;
+        private Person person;
         private Bitmap gameView;
         private Bitmap[] tileset;
         private int resolutionTile = 32;
@@ -20,15 +21,17 @@ namespace ForestIA
         {
             tileset = new Bitmap[10];
             tileset[0] = Properties.Resources.bg2;
-            tileset[1] = Properties.Resources.rock2;
-            tileset[2] = Properties.Resources.person;
+            tileset[1] = Properties.Resources.rsz_tree;
+            tileset[2] = Properties.Resources.person2;
+            tileset[3] = Properties.Resources.poke;
             this.containerView = containerView;
         }
 
         public void Setup(Point inicial)
         {
             map = new Map(inicial.X, inicial.Y);
-            gameView = new Bitmap(map.getMapWidth() * resolutionTile, map.getMapHeigth() * resolutionTile);
+            gameView = new Bitmap(map.getSize().X * resolutionTile, map.getSize().Y * resolutionTile);
+            person = new Person();
         }
 
         public Map getMap()
@@ -36,15 +39,20 @@ namespace ForestIA
             return map;
         }
 
+        public Person getPerson()
+        {
+            return person;
+        }
+
         public void Print()
         {
-            for (int coordenadaX = 0; coordenadaX < map.getMapWidth(); coordenadaX++)
+            for (int coordenadaX = 0; coordenadaX < map.getSize().X; coordenadaX++)
             {
-                for (int coordenadaY = 0; coordenadaY < map.getMapHeigth(); coordenadaY++)
+                for (int coordenadaY = 0; coordenadaY < map.getSize().Y; coordenadaY++)
                 {
                     using (Graphics grafico = Graphics.FromImage(gameView))
                     {
-                        Bitmap tile = tileset[map.getMapId(coordenadaX, coordenadaY)];
+                        Bitmap tile = tileset[map.getMapId(new Point(coordenadaX, coordenadaY))];
                         grafico.DrawImage(tile, new Point(coordenadaX * resolutionTile, coordenadaY * resolutionTile));
                     }
                 }
