@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ForestIA
@@ -30,7 +30,12 @@ namespace ForestIA
 
         private void jugarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            game.getMap().calculate();
+            List<Point> list = game.getMap().calculate();
+            game.setList(list);
+            
+            var thread = new Thread(game.Run);
+            thread.IsBackground = true;
+            thread.Start();
         }
 
         private void seleccionarDimensionesToolStripMenuItem_Click(object sender, EventArgs e)

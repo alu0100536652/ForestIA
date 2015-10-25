@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace ForestIA
 {
@@ -16,6 +17,8 @@ namespace ForestIA
         private Bitmap[] tileset;
         private int resolutionTile = 32;
         PictureBox containerView;
+        private List<Point> list;
+        private int buffer = Map.grassConst;
 
         public Game(ref PictureBox containerView)
         {
@@ -44,6 +47,22 @@ namespace ForestIA
             return person;
         }
 
+        public void setList(List<Point> list)
+        {
+            this.list = list;
+        }
+
+        public void Run()
+        {
+            do
+            {
+                Update();
+                Print();
+                Thread.Sleep(300);
+            } while (list.Count() > 1);
+            
+        }
+
         public void Print()
         {
             for (int coordenadaX = 0; coordenadaX < map.getSize().X; coordenadaX++)
@@ -63,7 +82,13 @@ namespace ForestIA
 
         public void Update()
         {
-
+            map.setItem(list[0], Map.grassConst);
+            if (list.Count > 1)
+            {
+                buffer = map.getMapId(list[1]);
+                map.setItem(list[1], Map.personConst);
+            }
+            list.RemoveAt(0);
         }
     }
 }
