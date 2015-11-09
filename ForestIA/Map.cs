@@ -18,6 +18,7 @@ namespace ForestIA
         public static int stoneConst = 1;
         public static int grassConst = 0;
         List<Point> traceList;
+        private int G;
 
         public Map(int width, int height)
         {
@@ -96,6 +97,9 @@ namespace ForestIA
             int statesCounter = 0;
             bool flag = false;
             int flag2 = 0;
+
+            //Hallar Euristica
+            G = manhattan(initial,target);
             do
             {
                 flag2 = fourDirection(current, cost, ref openList, ref flag);
@@ -136,22 +140,58 @@ namespace ForestIA
         private Point forDirectionTrace(Point last, ref int cost)
         {
             Point next = new Point();
-            if ((copia[last.X, last.Y - 1] < cost)&&(copia[last.X, last.Y - 1] >= 0))
+            if ((!last.X.Equals(0)) && (!last.Y.Equals(0)) && (!last.X.Equals(size.X)) && (!last.Y.Equals(size.Y)))
             {
-                next = new Point(last.X, last.Y - 1); cost = copia[last.X, last.Y - 1];
+                /*
+                if ((copia[last.X, last.Y - 1] < cost) && (copia[last.X, last.Y - 1] >= 0))
+                {
+                    next = new Point(last.X, last.Y - 1);
+                    cost = copia[last.X, last.Y - 1];
+                }
+                if ((copia[last.X, last.Y + 1] < cost) && (copia[last.X, last.Y + 1] >= 0))
+                {
+                    next = new Point(last.X, last.Y + 1);
+                    cost = copia[last.X, last.Y + 1];
+                }
+                if ((copia[last.X - 1, last.Y] < cost) && (copia[last.X - 1, last.Y] >= 0))
+                {
+                    next = new Point(last.X - 1, last.Y);
+                    cost = copia[last.X - 1, last.Y];
+                }
+                if ((copia[last.X + 1, last.Y] < cost) && (copia[last.X + 1, last.Y] >= 0))
+                {
+                    next = new Point(last.X + 1, last.Y);
+                    cost = copia[last.X + 1, last.Y];
+                }*/
+                if ((copia[last.X, last.Y - 1] < cost) && (copia[last.X, last.Y - 1] >= 0))
+                {
+                    next = new Point(last.X, last.Y - 1);
+                    cost = copia[last.X, last.Y - 1];
+                }
+                if ((copia[last.X, last.Y + 1] < cost) && (copia[last.X, last.Y + 1] >= 0))
+                {
+                    next = new Point(last.X, last.Y + 1);
+                    cost = copia[last.X, last.Y + 1];
+                }
+                if ((copia[last.X - 1, last.Y] < cost) && (copia[last.X - 1, last.Y] >= 0))
+                {
+                    next = new Point(last.X - 1, last.Y);
+                    cost = copia[last.X - 1, last.Y];
+                }
+                if ((copia[last.X + 1, last.Y] < cost) && (copia[last.X + 1, last.Y] >= 0))
+                {
+                    next = new Point(last.X + 1, last.Y);
+                    cost = copia[last.X + 1, last.Y];
+                }
             }
-            if ((copia[last.X, last.Y + 1] < cost)&& (copia[last.X, last.Y + 1] >= 0))
+            
+            if((next.X.Equals(0)) &&(next.Y.Equals(0)))
             {
-                next = new Point(last.X, last.Y + 1); cost = copia[last.X, last.Y + 1];
+                next = target;
+                cost = 0;
             }
-            if ((copia[last.X - 1, last.Y] < cost)&& (copia[last.X-1, last.Y] >= 0))
-            {
-                next = new Point(last.X - 1, last.Y); cost = copia[last.X-1, last.Y];
-            }
-            if ((copia[last.X + 1, last.Y] < cost) && (copia[last.X + 1, last.Y] >= 0))
-            {
-                next = new Point(last.X + 1, last.Y); cost = copia[last.X+1, last.Y];
-            }
+
+                
 
             return next;
         }
@@ -162,7 +202,8 @@ namespace ForestIA
 
             if (copia[point.X, point.Y - 1].Equals(-3))
             {
-                copia[point.X, point.Y - 1] = cost;
+                copia[point.X, point.Y - 1] = manhattan(point, target) + G;
+                //copia[point.X, point.Y - 1] = cost;
                 openList.Add(new Point(point.X, point.Y - 1));
                 numberOfStatesForThisCost++;
             } else if (copia[point.X, point.Y - 1].Equals(-2))
@@ -173,7 +214,8 @@ namespace ForestIA
 
             if (copia[point.X, point.Y + 1].Equals(-3))
             {
-                copia[point.X, point.Y + 1] = cost;
+                copia[point.X, point.Y + 1] = manhattan(point, target) + G;
+                //copia[point.X, point.Y + 1] = cost;
                 openList.Add(new Point(point.X, point.Y + 1));
                 numberOfStatesForThisCost++;
             } else if (copia[point.X, point.Y + 1].Equals(-2))
@@ -184,7 +226,8 @@ namespace ForestIA
 
             if (copia[point.X - 1, point.Y].Equals(-3))
             {
-                copia[point.X - 1, point.Y] = cost;
+                copia[point.X - 1, point.Y] = manhattan(point, target) + G;
+                //copia[point.X - 1, point.Y] = cost;
                 openList.Add(new Point(point.X - 1, point.Y));
                 numberOfStatesForThisCost++;
             } else if (copia[point.X - 1, point.Y].Equals(-2))
@@ -195,7 +238,8 @@ namespace ForestIA
 
             if (copia[point.X + 1, point.Y].Equals(-3))
             {
-                copia[point.X + 1, point.Y] = cost;
+                copia[point.X, point.Y + 1] = manhattan(point, target) + G;
+                //copia[point.X + 1, point.Y] = cost;
                 openList.Add(new Point(point.X + 1, point.Y));
                 numberOfStatesForThisCost++;
             }
@@ -206,6 +250,12 @@ namespace ForestIA
             }
 
             return numberOfStatesForThisCost;
+        }
+
+        private int manhattan(Point inicial, Point final)
+        {
+            int H = (Math.Abs(final.X - inicial.X) + Math.Abs(final.Y - inicial.Y));
+            return H;
         }
 
     }

@@ -82,6 +82,7 @@ namespace ForestIA
                 Thread.Sleep(300);
             } while (list.Count() > 1);
             
+
         }
 
         public void PrintMove()
