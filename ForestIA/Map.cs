@@ -212,7 +212,8 @@ namespace ForestIA
 
 
             //Heuritica A*
-            costoEstablecidoCalcularTrazaAlgortmo = manhattan(point, target) + G;
+            int H = manhattan(point, target);
+            costoEstablecidoCalcularTrazaAlgortmo =  H + G;
 
 
             if (copia[point.X, point.Y - 1].Equals(-3))
