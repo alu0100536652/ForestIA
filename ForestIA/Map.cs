@@ -90,14 +90,16 @@ namespace ForestIA
             Point current = new Point(target.X, target.Y);
             int cost = 1;
             List<Point> openList = new List<Point>();
+            traceList = new List<Point>();
             int statesForIncrement = 0;
             int statesForNewCost = 0;
             int statesCounter = 0;
             bool flag = false;
-
+            int flag2 = 0;
             do
             {
-                statesForIncrement += fourDirection(current, cost, ref openList, ref flag);
+                flag2 = fourDirection(current, cost, ref openList, ref flag);
+                statesForIncrement += flag2;
 
                 if ((statesCounter == statesForNewCost) || (cost.Equals(1)))
                 {
@@ -112,9 +114,10 @@ namespace ForestIA
                 statesCounter++;
                 openList.RemoveAt(0);
 
+
             } while ((!openList.Count.Equals(0))||(!flag));
-
-
+               
+               
             //calculate trace
             Point last = initial;
             int costToTarget = 100000;
@@ -163,7 +166,10 @@ namespace ForestIA
                 openList.Add(new Point(point.X, point.Y - 1));
                 numberOfStatesForThisCost++;
             } else if (copia[point.X, point.Y - 1].Equals(-2))
+            {
                 flag = true;
+                numberOfStatesForThisCost = -1;
+            }
 
             if (copia[point.X, point.Y + 1].Equals(-3))
             {
@@ -171,7 +177,10 @@ namespace ForestIA
                 openList.Add(new Point(point.X, point.Y + 1));
                 numberOfStatesForThisCost++;
             } else if (copia[point.X, point.Y + 1].Equals(-2))
+            {
                 flag = true;
+                numberOfStatesForThisCost = -1;
+            }
 
             if (copia[point.X - 1, point.Y].Equals(-3))
             {
@@ -179,15 +188,22 @@ namespace ForestIA
                 openList.Add(new Point(point.X - 1, point.Y));
                 numberOfStatesForThisCost++;
             } else if (copia[point.X - 1, point.Y].Equals(-2))
+            {
                 flag = true;
+                numberOfStatesForThisCost = -1;
+            }
 
             if (copia[point.X + 1, point.Y].Equals(-3))
             {
                 copia[point.X + 1, point.Y] = cost;
                 openList.Add(new Point(point.X + 1, point.Y));
                 numberOfStatesForThisCost++;
-            } else if (copia[point.X + 1, point.Y].Equals(-2))
+            }
+            else if (copia[point.X + 1, point.Y].Equals(-2))
+            {
                 flag = true;
+                numberOfStatesForThisCost = -1;
+            }
 
             return numberOfStatesForThisCost;
         }

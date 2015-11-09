@@ -19,6 +19,7 @@ namespace ForestIA
         PictureBox containerView;
         private List<Point> list;
         private int buffer = Map.grassConst;
+        private Point sector;
 
         public Game(ref PictureBox containerView)
         {
@@ -28,6 +29,7 @@ namespace ForestIA
             tileset[2] = Properties.Resources.person2;
             tileset[3] = Properties.Resources.poke;
             this.containerView = containerView;
+            sector = new Point(0, 0);
         }
 
         public void Setup(Point inicial)
@@ -52,15 +54,63 @@ namespace ForestIA
             this.list = list;
         }
 
+        public Point getSector()
+        {
+            return sector;
+        }
+
+        public void setSector(Point value)
+        {
+            if (value.X > 10)
+                sector.X++;
+            else if (value.X < 5)
+                if((sector.X - 1) >= 0)
+                    sector.X -= 1;
+            if (value.Y > 10)
+                sector.Y++;
+            else if (value.Y < 5)
+                if ((sector.Y - 1) >= 0)
+                    sector.Y -= 1;
+        }
+
         public void Run()
         {
             do
             {
                 Update();
-                Print();
+                PrintMove();
                 Thread.Sleep(300);
             } while (list.Count() > 1);
             
+        }
+
+        public void PrintMove()
+        {
+
+            int minX = sector.X * 15;
+            int minY = sector.Y * 15;
+            int maxX = (sector.X * 15) + 15;
+            int maxY = (sector.Y * 15) + 15;
+
+            Bitmap sectorView = new Bitmap(15* resolutionTile, 15* resolutionTile);
+            int x = 0;
+            int y = 0;
+            for (int coordenadaX = minX; coordenadaX < maxX; coordenadaX++)
+            {
+                for (int coordenadaY = minY; coordenadaY < maxY; coordenadaY++)
+                {
+                    using (Graphics grafico = Graphics.FromImage(sectorView))
+                    {
+                        Bitmap tile = tileset[map.getMapId(new Point(coordenadaX, coordenadaY))];
+                        grafico.DrawImage(tile, new Point(x * resolutionTile, y * resolutionTile));
+                    }
+                    y++;
+                }
+                y = 0;
+                x++;
+            }
+
+            containerView.Image = sectorView;
         }
 
         public void Print()
@@ -86,6 +136,8 @@ namespace ForestIA
             if (list.Count > 1)
             {
                 buffer = map.getMapId(list[1]);
+                sector.X = list[1].X / 15;
+                sector.Y = list[1].Y / 15;
                 map.setItem(list[1], Map.personConst);
             }
             list.RemoveAt(0);

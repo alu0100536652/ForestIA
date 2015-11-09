@@ -31,11 +31,23 @@ namespace ForestIA
         private void jugarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<Point> list = game.getMap().calculate();
-            game.setList(list);
+            if(Map.personConst == game.getMap().getMapId(list.First()))
+            {
+                game.setList(list);
+
+                var thread = new Thread(game.Run);
+                thread.IsBackground = true;
+                thread.Start();
+            }
+            else
+            {
+                string message = "No se puede acceder porque esta aislado y no hay acceso posible";
+                string caption = "El objectivo esta aislado";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+                result = MessageBox.Show(message, caption, buttons);
+            }
             
-            var thread = new Thread(game.Run);
-            thread.IsBackground = true;
-            thread.Start();
         }
 
         private void seleccionarDimensionesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -58,41 +70,45 @@ namespace ForestIA
                 case 1:
                     if (mouse.Button == MouseButtons.Left)
                     {
-                        game.getMap().setItem(point,Map.stoneConst);
-                        game.Print();
+                        game.getMap().setItem(new Point(point.X + (game.getSector().X * 15), point.Y + (game.getSector().Y * 15)), Map.stoneConst);
+                        game.PrintMove();
                     } else
                     {
-                        game.getMap().setItem(point, Map.grassConst);
-                        game.Print();
+                        game.getMap().setItem(new Point(point.X + (game.getSector().X * 15), point.Y + (game.getSector().Y * 15)), Map.grassConst);
+                        game.PrintMove();
                     }
                     break;
                 case 2:
                     if (mouse.Button == MouseButtons.Left)
                     {
-                        game.getMap().setItem(point, Map.personConst);
+                        game.getMap().setItem(new Point(point.X + (game.getSector().X * 15), point.Y + (game.getSector().Y * 15)), Map.personConst);
                         game.getPerson().ubicar(point);
-                        game.Print();
+                        game.PrintMove();
                         selector = Map.grassConst;
                     } else
                     {
-                        game.getMap().setItem(point, Map.grassConst);
-                        game.Print();
+                        game.getMap().setItem(new Point(point.X + (game.getSector().X * 15), point.Y + (game.getSector().Y * 15)), Map.grassConst);
+                        game.PrintMove();
                     }
                     break;
                 case 3:
                     if (mouse.Button == MouseButtons.Left)
                     {
-                        game.getMap().setItem(point, Map.targetConst);
-                        game.Print();
+                        game.getMap().setItem(new Point(point.X + (game.getSector().X * 15), point.Y + (game.getSector().Y * 15)), Map.targetConst);
+                        game.PrintMove();
                         selector = Map.grassConst;
                     }
                     else
                     {
-                        game.getMap().setItem(point, Map.grassConst);
-                        game.Print();
+                        game.getMap().setItem(new Point(point.X + (game.getSector().X * 15), point.Y + (game.getSector().Y * 15)), Map.grassConst);
+                        game.PrintMove();
                     }
                     break;
-
+                default:
+                    if (mouse.Button == MouseButtons.Right)
+                        game.setSector(point);
+                    game.PrintMove();
+                    break;
             }
         }
 
@@ -115,6 +131,11 @@ namespace ForestIA
         private void objetivoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             selector = Map.targetConst;
+        }
+
+        private void desplazarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            selector = 5;
         }
     }
 }

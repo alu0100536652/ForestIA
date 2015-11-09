@@ -40,6 +40,7 @@
             this.protagonistaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.objetivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.containerView = new System.Windows.Forms.PictureBox();
+            this.desplazarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.containerView)).BeginInit();
             this.SuspendLayout();
@@ -84,7 +85,8 @@
             this.seleccionarDimensionesToolStripMenuItem,
             this.obstaculosToolStripMenuItem,
             this.protagonistaToolStripMenuItem,
-            this.objetivoToolStripMenuItem});
+            this.objetivoToolStripMenuItem,
+            this.desplazarToolStripMenuItem});
             this.mapaToolStripMenuItem.Name = "mapaToolStripMenuItem";
             this.mapaToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.mapaToolStripMenuItem.Text = "Mapa";
@@ -142,6 +144,13 @@
             this.containerView.TabStop = false;
             this.containerView.Click += new System.EventHandler(this.containerView_Click);
             // 
+            // desplazarToolStripMenuItem
+            // 
+            this.desplazarToolStripMenuItem.Name = "desplazarToolStripMenuItem";
+            this.desplazarToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.desplazarToolStripMenuItem.Text = "Desplazar";
+            this.desplazarToolStripMenuItem.Click += new System.EventHandler(this.desplazarToolStripMenuItem_Click);
+            // 
             // menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,6 +184,7 @@
         private System.Windows.Forms.ToolStripMenuItem protagonistaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem objetivoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem desplazarToolStripMenuItem;
     }
 }
 
