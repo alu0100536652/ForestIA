@@ -199,11 +199,11 @@ namespace ForestIA
         private int fourDirection(Point point, int cost, ref List<Point> openList, ref bool flag)
         {
             int numberOfStatesForThisCost = 0;
-
+            //Heuritica A*
             if (copia[point.X, point.Y - 1].Equals(-3))
             {
                 copia[point.X, point.Y - 1] = manhattan(point, target) + G;
-                //copia[point.X, point.Y - 1] = cost;
+                copia[point.X, point.Y - 1] = cost;
                 openList.Add(new Point(point.X, point.Y - 1));
                 numberOfStatesForThisCost++;
             } else if (copia[point.X, point.Y - 1].Equals(-2))
@@ -215,7 +215,7 @@ namespace ForestIA
             if (copia[point.X, point.Y + 1].Equals(-3))
             {
                 copia[point.X, point.Y + 1] = manhattan(point, target) + G;
-                //copia[point.X, point.Y + 1] = cost;
+                copia[point.X, point.Y + 1] = cost;
                 openList.Add(new Point(point.X, point.Y + 1));
                 numberOfStatesForThisCost++;
             } else if (copia[point.X, point.Y + 1].Equals(-2))
@@ -227,7 +227,7 @@ namespace ForestIA
             if (copia[point.X - 1, point.Y].Equals(-3))
             {
                 copia[point.X - 1, point.Y] = manhattan(point, target) + G;
-                //copia[point.X - 1, point.Y] = cost;
+                copia[point.X - 1, point.Y] = cost;
                 openList.Add(new Point(point.X - 1, point.Y));
                 numberOfStatesForThisCost++;
             } else if (copia[point.X - 1, point.Y].Equals(-2))
@@ -238,8 +238,8 @@ namespace ForestIA
 
             if (copia[point.X + 1, point.Y].Equals(-3))
             {
-                copia[point.X, point.Y + 1] = manhattan(point, target) + G;
-                //copia[point.X + 1, point.Y] = cost;
+                copia[point.X + 1, point.Y] = manhattan(point, target) + G;
+                copia[point.X + 1, point.Y] = cost;
                 openList.Add(new Point(point.X + 1, point.Y));
                 numberOfStatesForThisCost++;
             }
