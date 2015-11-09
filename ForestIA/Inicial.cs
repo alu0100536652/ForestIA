@@ -31,7 +31,8 @@ namespace ForestIA
         private void jugarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<Point> list = game.getMap().calculate();
-            if(Map.personConst == game.getMap().getMapId(list.First()))
+            //if(Map.personConst == game.getMap().getMapId(list.First()))
+            if (game.getMap().mensaje.Equals(0))
             {
                 game.setList(list);
 

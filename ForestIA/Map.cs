@@ -19,6 +19,8 @@ namespace ForestIA
         public static int grassConst = 0;
         List<Point> traceList;
         private int G;
+        int costoEstablecidoCalcularTrazaAlgortmo;
+        public int mensaje = 0;
 
         public Map(int width, int height)
         {
@@ -97,9 +99,10 @@ namespace ForestIA
             int statesCounter = 0;
             bool flag = false;
             int flag2 = 0;
-
+            traceList = new List<Point>();
             //Hallar Euristica
             G = manhattan(initial,target);
+            mensaje = 0;
             do
             {
                 flag2 = fourDirection(current, cost, ref openList, ref flag);
@@ -114,7 +117,14 @@ namespace ForestIA
                     statesForIncrement = 0;
                 }
 
-                current = openList[0];
+                //current = (!openList.Count.Equals(0)) ? openList[0]:  traceList;
+                if (!openList.Count.Equals(0))
+                    current = openList[0];
+                else
+                {
+                    mensaje = 1;
+                    return traceList;
+                }
                 statesCounter++;
                 openList.RemoveAt(0);
 
@@ -125,7 +135,7 @@ namespace ForestIA
             //calculate trace
             Point last = initial;
             int costToTarget = 100000;
-            traceList = new List<Point>();
+            
             traceList.Add(initial);
             do
             {
@@ -196,14 +206,18 @@ namespace ForestIA
             return next;
         }
 
-        private int fourDirection(Point point, int cost, ref List<Point> openList, ref bool flag)
+        private int fourDirection(Point point, int costoEstablecidoCalcularTrazaAlgoritmo, ref List<Point> openList, ref bool flag)
         {
             int numberOfStatesForThisCost = 0;
+
+
             //Heuritica A*
+            costoEstablecidoCalcularTrazaAlgortmo = manhattan(point, target) + G;
+
+
             if (copia[point.X, point.Y - 1].Equals(-3))
             {
-                copia[point.X, point.Y - 1] = manhattan(point, target) + G;
-                copia[point.X, point.Y - 1] = cost;
+                copia[point.X, point.Y - 1] = costoEstablecidoCalcularTrazaAlgoritmo;
                 openList.Add(new Point(point.X, point.Y - 1));
                 numberOfStatesForThisCost++;
             } else if (copia[point.X, point.Y - 1].Equals(-2))
@@ -214,8 +228,7 @@ namespace ForestIA
 
             if (copia[point.X, point.Y + 1].Equals(-3))
             {
-                copia[point.X, point.Y + 1] = manhattan(point, target) + G;
-                copia[point.X, point.Y + 1] = cost;
+                copia[point.X, point.Y + 1] = costoEstablecidoCalcularTrazaAlgoritmo;
                 openList.Add(new Point(point.X, point.Y + 1));
                 numberOfStatesForThisCost++;
             } else if (copia[point.X, point.Y + 1].Equals(-2))
@@ -226,8 +239,7 @@ namespace ForestIA
 
             if (copia[point.X - 1, point.Y].Equals(-3))
             {
-                copia[point.X - 1, point.Y] = manhattan(point, target) + G;
-                copia[point.X - 1, point.Y] = cost;
+                copia[point.X - 1, point.Y] = costoEstablecidoCalcularTrazaAlgoritmo;
                 openList.Add(new Point(point.X - 1, point.Y));
                 numberOfStatesForThisCost++;
             } else if (copia[point.X - 1, point.Y].Equals(-2))
@@ -238,8 +250,7 @@ namespace ForestIA
 
             if (copia[point.X + 1, point.Y].Equals(-3))
             {
-                copia[point.X + 1, point.Y] = manhattan(point, target) + G;
-                copia[point.X + 1, point.Y] = cost;
+                copia[point.X + 1, point.Y] = costoEstablecidoCalcularTrazaAlgoritmo;
                 openList.Add(new Point(point.X + 1, point.Y));
                 numberOfStatesForThisCost++;
             }
